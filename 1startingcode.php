@@ -6,9 +6,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+	<title>Tasks Management</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -41,26 +41,105 @@
     ?>
     
         <!-- Navigation Bar -->
-        <?php if ($role === 'admin'): ?>
-        <nav>
-            <ul>
-                <li><a href='DashboardPage.php'>Dashboard</a></li>
-                <li><a href='tasksPage.php'>Tasks</a></li>
-                <li><a href='createTasksPage.php'>create task</a></li>
-                <li><a href='ManageUsersPage.php'>Users</a></li>
-                <li><a href='adduserpage.php'>Add User</a></li>
-                <li><a href='profilePage.php'>Profile</a></li>
-                <li><a href='aboutUsPage.php'>About Us</a></li>
-            </ul>
-            <p><?= $full_name ?></p>
-        </nav>
-    <?php else: ?>
-        <nav>
-            <ul>
-                <li><a href='DashboardPage.php'>Dashboard</a></li>
-                <li><a href='tasksPage.php'>All Tasks</a></li>
-                <li><a href='profilePage.php'>Profile</a></li>
-                <li><a href='aboutUsPage.php'>About Us</a></li>
-            </ul>
-        </nav>
-    <?php endif; ?>
+    
+    <header class="header">
+		<h2 class="u-name">Tasks <b>Management</b></h2>
+		<h3 class="u-name">@<b> <?php echo $username ?></b></h3>
+	</header>
+    <div class="body">
+		<nav class="side-bar">
+			<div class="user-p">
+				<img src="1.jpg">
+
+			</div>
+			<!--Employee Navigation Bar-->
+            <?php if ($role === 'admin'): ?>
+                <ul>
+                    <li>
+                        <a href="DashboardPage.php">
+                            <i class="fa fa-tachometer" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tasksPage.php">
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                            <span>Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="createTasksPage.php">
+                            <i class="fa fa-tasks" aria-hidden="true"></i>
+                            <span>Create Task</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ManageUsersPage.php">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="adduserpage.php">
+                            <i class="fa fa-check-square" aria-hidden="true"></i>
+                            <span>Create Users</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="profilePage.php">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="aboutUsPage.php">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <span>About Us</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="loginpage.php">
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            <?php else: ?>
+                <ul>
+                    <li>
+                        <a href="DashboardPage.php">
+                            <i class="fa fa-tachometer" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tasksPage.php">
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                            <span>My Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="profilePage.php">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="aboutUsPage.php">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <span>About Us</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="loginpage.php">
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            <?php endif; ?>
+
+		</nav>
+		<section class="section-1">
+

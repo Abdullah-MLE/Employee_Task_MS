@@ -67,4 +67,9 @@
 $conn->close();
 ?>
 
+            </section>
+        </div>
+    </body>
+</html>
+
 

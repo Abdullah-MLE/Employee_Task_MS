@@ -69,5 +69,7 @@
     // Close the connection
     mysqli_close($conn);
     ?>
-</body>
+            </section>
+        </div>
+    </body>
 </html>

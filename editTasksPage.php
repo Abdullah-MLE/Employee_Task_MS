@@ -8,10 +8,12 @@
     // Close the connection
     mysqli_close($conn);
     ?>
-</body>
+    <?php
+        echo $_SESSION['taskid'];
+    ?>
+            </section>
+        </div>
+    </body>
 </html>
 
 
-<?php
-echo $_SESSION['taskid'];
-?>
