@@ -44,7 +44,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $result = $conn->query("SELECT * FROM users WHERE username='$username' AND password='$password'");
+        $result = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND password='$password'");
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();

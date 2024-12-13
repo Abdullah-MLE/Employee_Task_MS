@@ -17,8 +17,8 @@ if (!$conn) {
 echo "Connected successfully!</br>";
 
 // Drop tables if they exist
-$conn->query("DROP TABLE IF EXISTS tasks;");
-$conn->query("DROP TABLE IF EXISTS users;");
+mysqli_query($conn, "DROP TABLE IF EXISTS tasks;");
+mysqli_query($conn, "DROP TABLE IF EXISTS users;");
 echo "Table 'users' dropped.</br>Table 'tasks' dropped.</br>";
 
 // SQL to create users table
@@ -48,13 +48,13 @@ $sql_tasks = "CREATE TABLE IF NOT EXISTS tasks (
 );";
 
 // Execute table creation queries
-if ($conn->query($sql_users)) {
+if (mysqli_query($conn, $sql_users)) {
     echo "Table 'users' created successfully.</br>";
 } else {
     echo "Error creating table 'users': " . mysqli_error($conn) . "</br>";
 }
 
-if ($conn->query($sql_tasks)) {
+if (mysqli_query($conn, $sql_tasks)) {
     echo "Table 'tasks' created successfully.</br>";
 } else {
     echo "Error creating table 'tasks': " . mysqli_error($conn) . "</br>";
@@ -98,13 +98,13 @@ $sql_insert_tasks = "INSERT INTO tasks (title, description, assigned_to, status,
     ('Task 6', 'Description for task 6', 'user2', 'completed', '2024-12-20');";
 
 // Execute insert queries
-if ($conn->query($sql_insert_users)) {
+if (mysqli_query($conn, $sql_insert_users)) {
     echo "Default users inserted successfully!</br>";
 } else {
     echo "Error inserting default users: " . mysqli_error($conn) . "</br>";
 }
 
-if ($conn->query($sql_insert_tasks)) {
+if (mysqli_query($conn, $sql_insert_tasks)) {
     echo "Default tasks inserted successfully!</br>";
 } else {
     echo "Error inserting default tasks: " . mysqli_error($conn) . "</br>";

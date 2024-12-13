@@ -1,79 +1,67 @@
+<?php include '1startingcode.php'; ?>
+
+<!-- Create Task Content -->
+<h1>Create task, <?= $username ?>!</h1>
+
+<form method="post">
+    <label>Task title:</label>
+    <input type="text" id="title" name="title"><br><br>
+
+    <label>Task description:</label>
+    <textarea id="description" name="description"></textarea><br><br>
+    <label>Task will be assigned to:</label>
+    <select name="assigned_to">
+        <?php
+            // Fetch full_name and username
+            $query = "SELECT username, full_name FROM users WHERE role = 'employee';";
+            $result = mysqli_query($conn, $query);
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Populate the drop-down menu with employee names and usernames
+                echo "<option value='" . $row['username'] . "'>" . $row['full_name'] . "</option>";
+            }
+
+        ?>
+    </select>
+    <br><br>
+
+    <label>Task status:</label>
+    <select id="status" name="status">
+        <option value="pending">Pending</option>
+        <option value="in_progress">In progress</option>
+        <option value="completed">Completed</option>
+    </select>
+    <br><br>
+
+    <label>Due Date:</label>
+    <input type="date" id="due_date" name="due_date" value="<?php echo date('Y-m-d'); ?>">
+    <br><br>
+
+    <input type="submit" name="sub" value="Submit!">
+</form>
+
 <?php
-    // Start the session
-    session_start();
-?>
+if (isset($_POST['sub'])) {
+    // Get form inputs
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $assigned_to = $_POST['assigned_to'];
+    $status = $_POST['status'];
+    $due_date = $_POST['due_date'];
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
-<body>
+    // Insert task into the database
+    $query = "INSERT INTO tasks (title, description, assigned_to, status, due_date) 
+              VALUES ('$title', '$description', '$assigned_to', '$status', '$due_date')";
 
-    <!-- DB CONNECTION -->
-    <?php
-    // Database connection setup
-    $servername = "localhost";
-    $username = "root";
-    $dbpassword = "";
-    // $port = 3308;
-    $dbname = "website_project";
-
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $dbpassword, $dbname);
-
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
+    if (mysqli_query($conn, $query)) {
+        echo "Task created successfully!";
+    } else {
+        echo "Error: " . mysqli_error($conn);
     }
+}
 
-    $id = $_SESSION['id'];
-    $full_name = $_SESSION['full_name'];
-    $username = $_SESSION['username'];
-    $password = $_SESSION['password'];
-    $role = $_SESSION['role'];
-    $email = $_SESSION['email'];
-    $phone_number = $_SESSION['phone_number'];
-    $profile_picture = $_SESSION['profile_picture'];
-    $address = $_SESSION['address'];
-    $created_at = $_SESSION['hire_date'];
-    ?>
-    
-        <!-- Navigation Bar -->
-        <?php if ($role === 'admin'): ?>
-        <nav>
-            <ul>
-                <li><a href='DashboardPage.php'>Dashboard</a></li>
-                <li><a href='tasksPage.php'>Tasks</a></li>
-                <li><a href='createTasksPage.php'>create task</a></li>
-                <li><a href='ManageUsersPage.php'>Users</a></li>
-                <li><a href='adduserpage.php'>Add User</a></li>
-                <li><a href='profilePage.php'>Profile</a></li>
-                <li><a href='aboutUsPage.php'>About Us</a></li>
-            </ul>
-            <p><?= $full_name ?></p>
-        </nav>
-    <?php else: ?>
-        <nav>
-            <ul>
-                <li><a href='DashboardPage.php'>Dashboard</a></li>
-                <li><a href='tasksPage.php'>All Tasks</a></li>
-                <li><a href='profilePage.php'>Profile</a></li>
-                <li><a href='aboutUsPage.php'>About Us</a></li>
-            </ul>
-        </nav>
-    <?php endif; ?>
-
-
-    <h1>Welcome to the creat task page, <?= $full_name ?>!</h1>
-
-    
-
-    <?php
-    // Close the connection
-    mysqli_close($conn);
-    ?>
+// Close the connection
+mysqli_close($conn);
+?>
 </body>
 </html>

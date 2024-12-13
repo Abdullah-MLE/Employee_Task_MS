@@ -1,79 +1,65 @@
+<?php include '1startingcode.php'; ?>
+
+<!-- Create User Content -->
+<h1>Create User</h1>
+
+<form method="post">
+    <label>Full Name:</label>
+    <input type="text" id="full_name" name="full_name" required><br><br>
+
+    <label>Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label>Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label>Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <label>Phone Number:</label>
+    <input type="text" id="phone_number" name="phone_number"><br><br>
+
+    <label>Address:</label>
+    <textarea id="address" name="address"></textarea><br><br>
+
+    <label>Hire Date:</label>
+    <input type="date" id="hire_date" name="hire_date" value="<?php echo date('Y-m-d'); ?>"><br><br>
+
+    <label>Role:</label>
+    <select id="role" name="role">
+        <option value="admin">Admin</option>
+        <option value="employee">Employee</option>
+    </select>
+    <br><br>
+
+    <input type="submit" name="sub" value="Create User">
+</form>
+
 <?php
-    // Start the session
-    session_start();
-?>
+if (isset($_POST['sub'])) {
+    // Get form inputs
+    $full_name = $_POST['full_name'];
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+    $phone_number = $_POST['phone_number'];
+    $address = $_POST['address'];
+    $hire_date = $_POST['hire_date'];
+    $role = $_POST['role'];
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
-<body>
+    // Insert user into the database
+    $query = "INSERT INTO users (full_name, username, email, password, phone_number, address, hire_date, role) 
+              VALUES ('$full_name', '$username', '$email', '$password', '$phone_number', '$address', '$hire_date', '$role')";
 
-    <!-- DB CONNECTION -->
-    <?php
-    // Database connection setup
-    $servername = "localhost";
-    $username = "root";
-    $dbpassword = "";
-    // $port = 3308;
-    $dbname = "website_project";
-
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $dbpassword, $dbname);
-
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
+    if (mysqli_query($conn, $query)) {
+        echo "User created successfully!";
+    } else {
+        echo "Error: " . mysqli_error($conn);
     }
+}
 
-    $id = $_SESSION['id'];
-    $full_name = $_SESSION['full_name'];
-    $username = $_SESSION['username'];
-    $password = $_SESSION['password'];
-    $role = $_SESSION['role'];
-    $email = $_SESSION['email'];
-    $phone_number = $_SESSION['phone_number'];
-    $profile_picture = $_SESSION['profile_picture'];
-    $address = $_SESSION['address'];
-    $created_at = $_SESSION['hire_date'];
-    ?>
-    
-        <!-- Navigation Bar -->
-        <?php if ($role === 'admin'): ?>
-        <nav>
-            <ul>
-                <li><a href='DashboardPage.php'>Dashboard</a></li>
-                <li><a href='tasksPage.php'>Tasks</a></li>
-                <li><a href='createTasksPage.php'>create task</a></li>
-                <li><a href='ManageUsersPage.php'>Users</a></li>
-                <li><a href='adduserpage.php'>Add User</a></li>
-                <li><a href='profilePage.php'>Profile</a></li>
-                <li><a href='aboutUsPage.php'>About Us</a></li>
-            </ul>
-            <p><?= $full_name ?></p>
-        </nav>
-    <?php else: ?>
-        <nav>
-            <ul>
-                <li><a href='DashboardPage.php'>Dashboard</a></li>
-                <li><a href='tasksPage.php'>All Tasks</a></li>
-                <li><a href='profilePage.php'>Profile</a></li>
-                <li><a href='aboutUsPage.php'>About Us</a></li>
-            </ul>
-        </nav>
-    <?php endif; ?>
-
-
-    <h1>Welcome to the About Us Page, <?= $full_name ?>!</h1>
-
-    
-
-    <?php
-    // Close the connection
-    mysqli_close($conn);
-    ?>
+// Close the connection
+mysqli_close($conn);
+?>
 </body>
 </html>
