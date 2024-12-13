@@ -1,0 +1,44 @@
+.start
+{
+width: 400px;
+height:350px ;
+text-align: center;
+background-color: darkslategray;
+opacity: 0.5;
+margin: 0 auto;
+margin-top: 100px;
+}
+.bg
+{
+ background-color: rgb(239, 230, 230);
+ background-size: cover;
+}
+.img
+{
+width:100px;
+height:100px;
+border: none;
+border-radius: 50px;
+}
+.txt
+{
+margin-top: 15px;
+background: white;
+text-align: start;
+font-size: 15px;
+font-family: sans-serif;
+height: 30px;
+width: 300px;
+padding: 15px;
+border: none;
+border-radius: 15px;
+}
+.btn
+{
+width: 300px;
+height: 40px;
+border-radius: 10px;
+font-size: 20px;
+background-color: white;
+}
+    
