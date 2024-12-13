@@ -27,11 +27,11 @@
     $servername = "localhost";
     $username = "root";
     $dbpassword = "";
-    $port = 3308;
+    // $port = 3308;
     $dbname = "website_project";
 
     // Create connection
-    $conn = mysqli_connect($servername, $username, $dbpassword, $dbname, $port);
+    $conn = mysqli_connect($servername, $username, $dbpassword, $dbname);
 
     // Check connection
     if (!$conn) {

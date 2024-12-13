@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS tasks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     description TEXT,
-    assigned_to INT,
+    assigned_to VARCHAR(50),
     status ENUM('pending', 'in_progress', 'completed') DEFAULT 'pending',
     due_date TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
