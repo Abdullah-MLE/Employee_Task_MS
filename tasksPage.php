@@ -45,10 +45,10 @@
         <nav>
             <ul>
                 <li><a href='DashboardPage.php'>Dashboard</a></li>
-                <li><a href='createTasksPage.php'>Create Task</a></li>
-                <li><a href='ManageUsersPage.php'>Manage Users</a></li>
-                <li><a href='tasksPage.php'>All Tasks</a></li>
-                <li><a href='notificationPage.php'>Notifications</a></li>
+                <li><a href='tasksPage.php'>Tasks</a></li>
+                <li><a href='createTasksPage.php'>create task</a></li>
+                <li><a href='ManageUsersPage.php'>Users</a></li>
+                <li><a href='adduserpage.php'>Add User</a></li>
                 <li><a href='profilePage.php'>Profile</a></li>
                 <li><a href='aboutUsPage.php'>About Us</a></li>
             </ul>
@@ -59,7 +59,6 @@
             <ul>
                 <li><a href='DashboardPage.php'>Dashboard</a></li>
                 <li><a href='tasksPage.php'>All Tasks</a></li>
-                <li><a href='notificationPage.php'>Notifications</a></li>
                 <li><a href='profilePage.php'>Profile</a></li>
                 <li><a href='aboutUsPage.php'>About Us</a></li>
             </ul>
