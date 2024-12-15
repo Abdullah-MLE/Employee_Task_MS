@@ -5,6 +5,8 @@
 	font-family: arial, sans-serif;
 }
 
+/* nav bar */
+
 .header {
 	display: flex;
 	justify-content: space-between;
@@ -55,7 +57,7 @@
 }
 
 .section-1 {
-	background-color: #fff;
+	background-color: #f4f4f9;
 	/* display: flex; */
 	/* justify-content: center;
 	align-items: center; */
@@ -85,4 +87,17 @@
 .side-bar ul li a i {
 	padding-right: 10px;
 	font-size: 23px;
+}
+/* about us page */
+.section-1 #header {
+	color: #333;
+}
+.section-1 #names-list {
+	padding: 0;
+}
+.section-1 #names-list .name-item {
+	background: #e0e0e0;
+	margin: 5px 0;
+	padding: 10px;
+	border-radius: 5px;
 }
